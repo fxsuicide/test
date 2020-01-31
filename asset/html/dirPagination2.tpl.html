@@ -1,0 +1,17 @@
+<nav class="pagination is-rounded is-small" role="navigation" aria-label="pagination">
+	<a class="pagination-previous" ng-if="boundaryLinks" ng-disabled="pagination.current == 1" ng-click="setCurrent(1)"><i class="fas fa-fast-backward"></i></a>
+	<a class="pagination-previous" ng-disabled="pagination.current == 1" ng-click="setCurrent(pagination.current - 1)"><i class="fas fa-backward"></i></a>
+	<a class="pagination-next" ng-disabled="pagination.current == pagination.last" ng-click="setCurrent(pagination.current + 1)"><i class="fas fa-forward"></i></a>
+	<a class="pagination-next" ng-if="boundaryLinks" ng-disabled="pagination.current == pagination.last" ng-click="setCurrent(pagination.last)"><i class="fas fa-fast-forward"></i></a>
+	<ul class="pagination-list">
+		<li ng-repeat="pageNumber in pages track by tracker(pageNumber, $index)" ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }">
+			<a class="pagination-link" ng-if="pageNumber != '...'" ng-class="pagination.current == pageNumber ? 'is-current' : ''" href="" ng-click="setCurrent(pageNumber)">{{ pageNumber }}</a>
+			<span class="pagination-ellipsis" ng-if="pageNumber == '...'">&hellip;</span></li>
+		</li>
+	</ul>
+	<ul class="pagination-list">
+		<li>
+			Menampilkan {{ range.lower }} - {{ range.upper }} dari {{ range.total }}
+		</li>
+	</ul>
+</nav>
